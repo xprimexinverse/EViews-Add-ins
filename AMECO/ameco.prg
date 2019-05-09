@@ -4,6 +4,7 @@
 '	PURPOSE: 		AMECO Add-In. 
 '
 ' 	DATE: 				08 / 08 / 2018
+'   Updated:      10 / 05 / 2019
 '
 '	AUTHOR:			Graeme Walsh
 ' 							Central Bank of Ireland
@@ -77,8 +78,12 @@
   df <- df[,-ncol(df)]
 
 ' Save the data as a CSV file using R's temp facilities
-  temp3 <- tempfile(fileext=".csv")
-  write.csv2(df,file=temp3,row.names=FALSE)
+' OLD CODE
+'  temp3 <- tempfile(fileext=".csv")
+'  write.csv2(df,file=temp3,row.names=FALSE)
+' NEW CODE - to fix reading in 2020 forecasts
+  temp3 <- tempfile(fileext=".txt")
+  write.table(df,file=temp3,row.names=FALSE,quote=FALSE,sep=";")  
 
 ' Switch off R commands
   xoff
